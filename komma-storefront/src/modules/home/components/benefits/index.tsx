@@ -36,33 +36,18 @@ export default function Benefits() {
           </div>
         </div>
       </div>
-      <div className="grid md:grid-cols-3 gap-8">
-        <div className="space-y-4">
-          <div className="text-6xl font-light text-muted-foreground/50">
-            01.
-          </div>
+      <div className="grid md:grid-cols-3 gap-x-8 divide-x-2 divide-zinc-200">
+        <div className="space-y-4 flex gap-4">
+          <div className="text-6xl font-light text-[#EDDCE0]">01.</div>
           <h2 className="text-xl font-semibold">High quality products.</h2>
-          <p className="text-muted-foreground">
-            We ensure every product meets our premium quality standards.
-          </p>
         </div>
-        <div className="space-y-4">
-          <div className="text-6xl font-light text-muted-foreground/50">
-            02.
-          </div>
+        <div className="space-y-4 flex gap-4 lg:pl-4">
+          <div className="text-6xl font-light text-[#EDDCE0]">02.</div>
           <h2 className="text-xl font-semibold">One of a kind designs.</h2>
-          <p className="text-muted-foreground">
-            Each piece is uniquely crafted with creativity and passion.
-          </p>
         </div>
-        <div className="space-y-4">
-          <div className="text-6xl font-light text-muted-foreground/50">
-            03.
-          </div>
+        <div className="space-y-4 flex gap-4 lg:pl-4">
+          <div className="text-6xl font-light text-[#EDDCE0]">03.</div>
           <h2 className="text-xl font-semibold">Top tier customer service.</h2>
-          <p className="text-muted-foreground">
-            We're dedicated to providing exceptional support to our customers.
-          </p>
         </div>
       </div>
     </div>
