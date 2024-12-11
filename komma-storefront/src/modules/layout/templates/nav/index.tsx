@@ -85,8 +85,8 @@ export default async function Nav() {
             </Suspense>
           </div>
         </nav>
-      </header>{" "}
-      <Menubar className="flex items-center justify-center bg-[#212121] text-zinc-100 my-2">
+      </header>
+      <Menubar className="flex items-center justify-center bg-[#212121] text-zinc-100">
         {categories
           .filter((c) => c.parent_category === null)
           .map((category) => (
