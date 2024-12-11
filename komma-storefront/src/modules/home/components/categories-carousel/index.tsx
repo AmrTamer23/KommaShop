@@ -5,7 +5,6 @@ import {
 } from "@/components/ui/carousel"
 import { getCategoryByHandle, listCategories } from "@lib/data/categories"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import Link from "next/link"
 
 export async function CategoriesCarousel() {
   const categories = await listCategories()
