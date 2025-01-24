@@ -3,7 +3,7 @@ import { listCollections } from "@lib/data/collections"
 import { Text, clx } from "@medusajs/ui"
 
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import MedusaCTA from "@modules/layout/components/medusa-cta"
+
 
 export default async function Footer() {
   const { collections } = await listCollections({
@@ -114,7 +114,7 @@ export default async function Footer() {
           <Text className="txt-compact-small">
             © {new Date().getFullYear()} Medusa Store. All rights reserved.
           </Text>
-          <MedusaCTA />
+
         </div>
       </div>
     </footer>

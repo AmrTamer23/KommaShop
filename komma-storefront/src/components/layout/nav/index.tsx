@@ -3,7 +3,7 @@ import { Suspense } from "react"
 import { listRegions } from "@lib/data/regions"
 import { StoreRegion } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import CartButton from "@modules/layout/components/cart-button"
+import CartButton from "../components/cart-button"
 import { MovingBanner } from "./moving-banner"
 import {
   Menubar,
@@ -15,6 +15,7 @@ import {
   MenubarTrigger,
 } from "@/components/ui/menubar"
 import { listCategories } from "@lib/data/categories"
+import { NavigationMenu } from "./navigation-menu"
 
 export default async function Nav() {
   const regions = await listRegions().then((regions: StoreRegion[]) => regions)
@@ -86,36 +87,9 @@ export default async function Nav() {
           </div>
         </nav>
       </header>
-      <Menubar className="flex items-center justify-center bg-[#212121] text-zinc-100">
-        {categories
-          .filter((c) => c.parent_category === null)
-          .map((category) => (
-            <MenubarMenu key={category.id}>
-              <MenubarTrigger className="flex items-center justify-center gap-1">
-                <span>{category.name}</span>
-                <svg
-                  className="size-4 mt-0.5"
-                  viewBox="0 0 512 512"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M256 294.1L383 167c9.4-9.4 24.6-9.4 33.9 0s9.3 24.6 0 34L273 345c-9.1 9.1-23.7 9.3-33.1.7L95 201.1c-4.7-4.7-7-10.9-7-17s2.3-12.3 7-17c9.4-9.4 24.6-9.4 33.9 0l127.1 127z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </MenubarTrigger>
-              {category.category_children.length > 0 && (
-                <MenubarContent className="bg-zinc-200 list-none px-2">
-                  {category.category_children.map((child) => (
-                    <a key={child.id} href={`/category/${child.id}`}>
-                      <li>{child.name}</li>
-                    </a>
-                  ))}
-                </MenubarContent>
-              )}
-            </MenubarMenu>
-          ))}
-      </Menubar>
+      <NavigationMenu categories={
+        categories.filter((c) => c.parent_category === null)
+      } />
     </div>
   )
 }
