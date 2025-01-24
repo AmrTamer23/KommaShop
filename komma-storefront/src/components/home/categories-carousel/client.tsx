@@ -63,11 +63,11 @@ function CategoryCard({
     <Card className="overflow-hidden rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl">
       <LocalizedClientLink href={`/categories/${handle}`} className="block h-full">
         <CardContent className="p-0 aspect-square relative group">
-          <Image
+          <img
             src={img || "/logo.webp"}
             alt={title}
-            layout="fill"
-            objectFit="cover"
+
+            // objectFit="cover"
             className="transition-transform duration-300 group-hover:scale-110"
             loading={index < 4 ? "eager" : "lazy"}
             onError={

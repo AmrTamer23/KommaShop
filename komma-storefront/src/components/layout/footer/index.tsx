@@ -1,122 +1,94 @@
+
+
+
+import Image from "next/image"
+import { Facebook, Instagram, Twitter } from "lucide-react"
+// import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { listCategories } from "@lib/data/categories"
 import { listCollections } from "@lib/data/collections"
-import { Text, clx } from "@medusajs/ui"
-
-import LocalizedClientLink from "@modules/common/components/localized-client-link"
-
 
 export default async function Footer() {
+  // const [email, setEmail] = useState("")
+
+  // Fetch categories and collections
   const { collections } = await listCollections({
-    fields: "*products",
+    fields: '*products',
   })
   const productCategories = await listCategories()
 
+
   return (
-    <footer className="border-t border-ui-border-base w-full">
-      <div className="content-container flex flex-col w-full">
-        <div className="flex flex-col gap-y-6 xsmall:flex-row items-start justify-between py-40">
+    <footer className="bg-background border-t">
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="space-y-4">
+            <Image src="/logo.webp" alt="KommaShop Logo" width={150} height={50} />
+            <p className="text-sm text-muted-foreground">
+              Your one-stop shop for all your needs. Quality products, excellent service.
+            </p>
+            <div className="flex space-x-4">
+              <a href="#" className="text-muted-foreground hover:text-primary">
+                <Facebook size={20} />
+              </a>
+              <a href="#" className="text-muted-foreground hover:text-primary">
+                <Instagram size={20} />
+              </a>
+              <a href="#" className="text-muted-foreground hover:text-primary">
+                <Twitter size={20} />
+              </a>
+            </div>
+          </div>
+
           <div>
-            <LocalizedClientLink
-              href="/"
-              className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base uppercase"
-            >
-              KommaShop
+            <h3 className="font-semibold mb-4">Categories</h3>
+            <ul className="space-y-2">
+              {productCategories?.slice(0, 6).map((c) => (
+                <li key={c.id}>
+                  <LocalizedClientLink
+                    href={`/categories/${c.handle}`}
+                    className="text-sm text-muted-foreground hover:text-primary"
+                  >
+                    {c.name}
+                  </LocalizedClientLink>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-semibold mb-4">Collections</h3>
+            <ul className="space-y-2">
+              {collections?.slice(0, 6).map((c) => (
+                <li key={c.id}>
+                  <LocalizedClientLink
+                    href={`/collections/${c.handle}`}
+                    className="text-sm text-muted-foreground hover:text-primary"
+                  >
+                    {c.title}
+                  </LocalizedClientLink>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+
+        </div>
+
+        <div className="border-t mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} KommaShop. All rights reserved.</p>
+          <div className="flex space-x-4 mt-4 md:mt-0">
+            <LocalizedClientLink href="/terms" className="text-sm text-muted-foreground hover:text-primary">
+              Terms of Service
+            </LocalizedClientLink>
+            <LocalizedClientLink href="/privacy" className="text-sm text-muted-foreground hover:text-primary">
+              Privacy Policy
             </LocalizedClientLink>
           </div>
-          <div className="text-small-regular gap-10 md:gap-x-16 grid grid-cols-2 sm:grid-cols-3">
-            {productCategories && productCategories?.length > 0 && (
-              <div className="flex flex-col gap-y-2">
-                <span className="txt-small-plus txt-ui-fg-base">
-                  Categories
-                </span>
-                <ul
-                  className="grid grid-cols-1 gap-2"
-                  data-testid="footer-categories"
-                >
-                  {productCategories?.slice(0, 6).map((c) => {
-                    if (c.parent_category) {
-                      return
-                    }
-
-                    const children =
-                      c.category_children?.map((child) => ({
-                        name: child.name,
-                        handle: child.handle,
-                        id: child.id,
-                      })) || null
-
-                    return (
-                      <li
-                        className="flex flex-col gap-2 text-ui-fg-subtle txt-small"
-                        key={c.id}
-                      >
-                        <LocalizedClientLink
-                          className={clx(
-                            "hover:text-ui-fg-base",
-                            children && "txt-small-plus"
-                          )}
-                          href={`/categories/${c.handle}`}
-                          data-testid="category-link"
-                        >
-                          {c.name}
-                        </LocalizedClientLink>
-                        {children && (
-                          <ul className="grid grid-cols-1 ml-3 gap-2">
-                            {children &&
-                              children.map((child) => (
-                                <li key={child.id}>
-                                  <LocalizedClientLink
-                                    className="hover:text-ui-fg-base"
-                                    href={`/categories/${child.handle}`}
-                                    data-testid="category-link"
-                                  >
-                                    {child.name}
-                                  </LocalizedClientLink>
-                                </li>
-                              ))}
-                          </ul>
-                        )}
-                      </li>
-                    )
-                  })}
-                </ul>
-              </div>
-            )}
-            {collections && collections.length > 0 && (
-              <div className="flex flex-col gap-y-2">
-                <span className="txt-small-plus txt-ui-fg-base">
-                  Collections
-                </span>
-                <ul
-                  className={clx(
-                    "grid grid-cols-1 gap-2 text-ui-fg-subtle txt-small",
-                    {
-                      "grid-cols-2": (collections?.length || 0) > 3,
-                    }
-                  )}
-                >
-                  {collections?.slice(0, 6).map((c) => (
-                    <li key={c.id}>
-                      <LocalizedClientLink
-                        className="hover:text-ui-fg-base"
-                        href={`/collections/${c.handle}`}
-                      >
-                        {c.title}
-                      </LocalizedClientLink>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
-        </div>
-        <div className="flex w-full mb-16 justify-between text-ui-fg-muted">
-          <Text className="txt-compact-small">
-            © {new Date().getFullYear()} Medusa Store. All rights reserved.
-          </Text>
-
         </div>
       </div>
     </footer>
   )
 }
+

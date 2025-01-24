@@ -4,9 +4,9 @@ import { Instagram } from "lucide-react"
 
 export default function Benefits() {
   return (
-    <div className="container mx-auto px-4 py-12 max-w-7xl">
-      <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
-        <div className="relative aspect-square">
+    <div className="container mx-auto px-4 py-8 max-w-7xl">
+      <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 items-center mb-12">
+        <div className="relative aspect-square w-full">
           <Image
             src="/benefits.webp"
             alt="Motivational stickers collection"
@@ -15,8 +15,8 @@ export default function Benefits() {
             priority
           />
         </div>
-        <div className="space-y-6">
-          <h1 className="text-4xl tracking-tight lg:text-5xl leading-relaxed">
+        <div className="space-y-4">
+          <h1 className="text-3xl tracking-tight lg:text-5xl leading-relaxed">
             We offer exclusive products created by the{" "}
             <span className="relative whitespace-nowrap font-bold">
               talented artist Marwa Tarek
@@ -36,17 +36,17 @@ export default function Benefits() {
           </div>
         </div>
       </div>
-      <div className="grid md:grid-cols-3 gap-x-8 divide-x-2 divide-zinc-200">
+      <div className="flex flex-col md:grid md:grid-cols-3 gap-8 md:gap-x-8 md:divide-x-2 md:divide-zinc-200">
         <div className="space-y-4 flex gap-4">
-          <div className="text-6xl font-light text-[#EDDCE0]">01.</div>
+          <div className="text-5xl font-light text-[#EDDCE0]">01.</div>
           <h2 className="text-xl font-semibold">High quality products.</h2>
         </div>
-        <div className="space-y-4 flex gap-4 lg:pl-4">
-          <div className="text-6xl font-light text-[#EDDCE0]">02.</div>
+        <div className="space-y-4 flex gap-4 md:pl-4">
+          <div className="text-5xl font-light text-[#EDDCE0]">02.</div>
           <h2 className="text-xl font-semibold">One of a kind designs.</h2>
         </div>
-        <div className="space-y-4 flex gap-4 lg:pl-4">
-          <div className="text-6xl font-light text-[#EDDCE0]">03.</div>
+        <div className="space-y-4 flex gap-4 md:pl-4">
+          <div className="text-5xl font-light text-[#EDDCE0]">03.</div>
           <h2 className="text-xl font-semibold">Top tier customer service.</h2>
         </div>
       </div>
