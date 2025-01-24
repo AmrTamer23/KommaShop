@@ -1,16 +1,16 @@
 import { Metadata } from "next"
 
-import FeaturedProducts from "@modules/home/components/featured-products"
-import Hero from "@modules/home/components/hero"
+import FeaturedProducts from "@/components/home/featured-products"
+import Hero from "@/components/home/hero"
 import { listCollections } from "@lib/data/collections"
 import { getRegion } from "@lib/data/regions"
-import { CategoriesCarousel } from "@modules/home/components/categories-carousel"
-import Benefits from "@modules/home/components/benefits"
+import { CategoriesCarousel } from "@/components/home/categories-carousel"
+import Benefits from "@/components/home/benefits"
 
 export const metadata: Metadata = {
-  title: "Medusa Next.js Starter Template",
+  title: "KommaShop",
   description:
-    "A performant frontend ecommerce starter template with Next.js 14 and Medusa.",
+    "KommaShop is a modern e-commerce platform that offers a wide range of products.",
 }
 
 export default async function Home(props: {
