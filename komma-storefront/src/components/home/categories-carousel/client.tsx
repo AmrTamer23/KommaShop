@@ -33,21 +33,17 @@ export function CategoriesCarouselClient({
         onSelect={(selectedIndex) => setCurrentSlide(selectedIndex.currentTarget.tabIndex)}
       >
         <CarouselContent className="-ml-2 md:-ml-4">
-          {categories.map((category, index) => (
+          {categories.filter((c) => c.parent_category === null).map((category, index) => (
             <CarouselItem key={category.id} className="pl-2 md:pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-              <CategoryCard handle={category.handle} title={category.name} img={category.category_children?.[0]?.products?.[0]?.images?.[0].url} index={index} />
+              <CategoryCard handle={category.handle} title={category.name} img={
+                '/' + category.handle + '.jpeg'
+              } index={index} />
             </CarouselItem>
           ))}
         </CarouselContent>
         <CarouselPrevious className="hidden md:flex" />
         <CarouselNext className="hidden md:flex" />
       </Carousel>
-      <div className="mt-4 flex justify-center items-center space-x-2">
-        <Progress value={((currentSlide + 1) / categories.length) * 100} className="w-full max-w-xs" />
-        <span className="text-sm text-gray-500">
-          {currentSlide + 1} / {categories.length}
-        </span>
-      </div>
     </div>
   )
 }
@@ -68,12 +64,17 @@ function CategoryCard({
       <LocalizedClientLink href={`/categories/${handle}`} className="block h-full">
         <CardContent className="p-0 aspect-square relative group">
           <Image
-            src={img || "/placeholder.svg"}
+            src={img || "/logo.webp"}
             alt={title}
             layout="fill"
             objectFit="cover"
             className="transition-transform duration-300 group-hover:scale-110"
             loading={index < 4 ? "eager" : "lazy"}
+            onError={
+              (e) => {
+                e.currentTarget.src = "/logo.webp"
+              }
+            }
           />
           <div className="absolute inset-0 bg-black bg-opacity-40 transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
           <div className="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full transition-transform duration-300 group-hover:translate-y-0">

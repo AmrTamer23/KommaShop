@@ -33,19 +33,16 @@ export default async function Home(props: {
     <main className="overflow-hidden  gap-8 flex flex-col">
       <Hero />
       <CategoriesCarousel />
-      <div className="py-12">
-        <FeaturedProducts
-          collections={collections.filter((c) => c.handle === "featured")}
-          region={region}
-        />
-      </div>
+      <FeaturedProducts
+        collections={collections.filter((c) => c.handle === "featured")}
+        region={region}
+      />
       <Benefits />
-      <div className="py-12">
-        <FeaturedProducts
-          collections={collections.filter((c) => c.handle === "best-sellers")}
-          region={region}
-        />
-      </div>
+      <FeaturedProducts
+        collections={collections.filter((c) => c.handle === "best-sellers")}
+        region={region}
+
+      />
     </main>
   )
 }
